@@ -1,0 +1,105 @@
+---
+title: "Single Document"
+author: "Yingting Zhang"
+date: "2023-09-20"
+output: github_document
+---
+
+# Problem 1
+
+* load the moderndive library
+```{r}
+library(moderndive)
+data("early_january_weather")
+early_january_weather
+```
+
+  * the variables in this dataset, including names / values of important variables
+  * the size of the dataset (using nrow and ncol)
+```{r}
+nrow(early_january_weather)
+ncol(early_january_weather)
+```
+
+  * the mean temperature
+```{r}
+mean(early_january_weather$temp)
+```
+
+Short Description:
+According to the dataset, we can see that there are 15
+variables, including origin, year, month, day, hour, temp, dewp, humid, wind_dir,
+wind_speed, wind_gust, precip, pressure, visib, and time_hour. The size of 
+dataset includes 358 rows and 15 columns. The mean of temperature is 39.58212.
+
+* make a scatterplot of temp (y) vs time_hour (x):
+```{r}
+library(tidyverse)
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
+```
+
+
+* Describe patterns that are apparent in this plot:
+As time goes on, the temperature zigzag increased and at the highest peak, 
+after the date on Jan 14th, it suddenly dropped. As the part of humidity data, 
+the data between 40-60 make up a large part during the range of time_hour.
+
+* Export scatterplot to your project directory 
+```{r}
+ggsave("scatter_plot.pdf",height = 4, width = 4)
+```
+
+# Problem 2
+
+* Create a data frame comprised of:
+
+  * a random sample of size 10 from a standard Normal distribution
+  * a logical vector indicating whether elements of the sample are greater than 0
+  * a character vector of length 10
+  * a factor vector of length 10, with 3 different factor “levels”
+
+```{r}
+q2=tibble(
+  norm_samp = rnorm(10),
+  log_samp = norm_samp > 0,
+  character_vec = c("one","two","three","four","five","six","seven",
+                     "eight","nine","ten"),
+  factor_vec = factor(c("LevelA", "LevelB", "LevelC","LevelA", "LevelB", "LevelC",
+                        "LevelA", "LevelB", "LevelC","LevelA"))
+)
+```
+
+* take the mean of each variable in your dataframe. What works and what doesn’t?
+
+```{r}
+mean(pull(q2,norm_samp))
+mean(pull(q2,log_samp))
+mean(pull(q2,character_vec))
+mean(pull(q2,factor_vec))
+```
+According to the results, we can see that the mean of a random sample of size 10
+is 0.3528056, with the logical vector 0.5,however, the last two variable which
+are character vector and factor vector don't work because they are neither 
+numeric nor logical returning.
+
+* Using as.numeric function to the logical, character, and factor variables
+```{r eval=FALSE}
+as.numeric(pull(q2,log_samp))
+as.numeric(pull(q2,character_vec))
+as.numeric(pull(q2,factor_vec))
+```
+
+According to the results, the result of factor vector shows the values of 1,2,3 
+corresponding to the levels of factor; the result of logical vector convert TRUE
+as 1 and FALSE as 0; it doesn't work for character vector as there is no numeric
+value in it. 
+
+* Explain why or why not when calculate their means?
+  * Logical vector: a logical vector can be converted into numeric value (TRUE=1,
+  FALSE=0). In this case, this can calculate the mean
+  * Character vector: a character vector with character values
+  cannot convert into numeric values, which calculate the mean
+  * Factor vector: although we can use "as.numeric" function" to convert factor
+  levels into numeric format, the data are not truly numeric values, presenting
+  levels numerically. In this case, this cannot calculate the mean
+  
