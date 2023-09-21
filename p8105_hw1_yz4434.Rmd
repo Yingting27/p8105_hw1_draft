@@ -16,6 +16,7 @@ early_january_weather
 
   * the variables in this dataset, including names / values of important variables
   * the size of the dataset (using nrow and ncol)
+  
 ```{r}
 nrow(early_january_weather)
 ncol(early_january_weather)
@@ -30,7 +31,7 @@ Short Description:
 According to the dataset, we can see that there are 15
 variables, including origin, year, month, day, hour, temp, dewp, humid, wind_dir,
 wind_speed, wind_gust, precip, pressure, visib, and time_hour. The size of 
-dataset includes 358 rows and 15 columns. The mean of temperature is 39.58212.
+dataset includes 358 rows and 15 columns. The mean of temperature is `r mean(early_january_weather$temp)`.
 
 * make a scatterplot of temp (y) vs time_hour (x):
 ```{r}
@@ -78,7 +79,7 @@ mean(pull(q2,character_vec))
 mean(pull(q2,factor_vec))
 ```
 According to the results, we can see that the mean of a random sample of size 10
-is 0.3528056, with the logical vector 0.5,however, the last two variable which
+is `r mean(pull(q2,norm_samp))`, with the logical vector 0.5, however, the last two variable which
 are character vector and factor vector don't work because they are neither 
 numeric nor logical returning.
 
