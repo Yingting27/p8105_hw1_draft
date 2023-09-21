@@ -73,21 +73,22 @@ q2=tibble(
 * take the mean of each variable in your dataframe. What works and what doesn’t?
 
 ```{r}
-mean(pull(q2,norm_samp))
-mean(pull(q2,log_samp))
-mean(pull(q2,character_vec))
-mean(pull(q2,factor_vec))
+mean (pull (q2,norm_samp))
+mean (pull (q2,log_samp))
+mean (pull (q2,character_vec))
+mean (pull (q2,factor_vec))
 ```
+
 According to the results, we can see that the mean of a random sample of size 10
-is `r mean(pull(q2,norm_samp))`, with the logical vector 0.5, however, the last two variable which
-are character vector and factor vector don't work because they are neither 
-numeric nor logical returning.
+is `r mean(pull(q2,norm_samp))`, with the logical vector `r mean(pull(q2,log_samp))`,
+however, the last two variable which are character vector and factor vector 
+don't work because they are neither numeric nor logical returning.
 
 * Using as.numeric function to the logical, character, and factor variables
 ```{r eval=FALSE}
-as.numeric(pull(q2,log_samp))
-as.numeric(pull(q2,character_vec))
-as.numeric(pull(q2,factor_vec))
+as.numeric (pull (q2,log_samp ))
+as.numeric (pull (q2,character_vec))
+as.numeric (pull (q2,factor_vec))
 ```
 
 According to the results, the result of factor vector shows the values of 1,2,3 
