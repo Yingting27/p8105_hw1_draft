@@ -63,9 +63,9 @@ ggsave("scatter_plot.pdf",height = 4, width = 4)
 q2=tibble(
   norm_samp = rnorm(10),
   log_samp = norm_samp > 0,
-  character_vec = c("one","two","three","four","five","six","seven",
+  character_vec = c ("one","two","three","four","five","six","seven",
                      "eight","nine","ten"),
-  factor_vec = factor(c("LevelA", "LevelB", "LevelC","LevelA", "LevelB", "LevelC",
+  factor_vec = factor (c ("LevelA", "LevelB", "LevelC","LevelA", "LevelB", "LevelC",
                         "LevelA", "LevelB", "LevelC","LevelA"))
 )
 ```
